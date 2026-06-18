@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store";
 import { deleteProject } from "@/features/projects/projectSlice";
@@ -17,24 +17,26 @@ export default function ProjectsPage() {
   const [editingProject, setEditingProject] = useState<string | null>(null);
 
   // Search and Filter Logic
-  const filteredProjects = projects.filter((project) => {
-    const matchesSearch = project.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    const matchesFilter =
-      filterStatus === "All" || project.status === filterStatus;
-    return matchesSearch && matchesFilter;
-  });
+  const filteredProjects = useMemo(() => {
+    return projects.filter((project) => {
+      const matchesSearch = project.name
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+      const matchesFilter =
+        filterStatus === "All" || project.status === filterStatus;
+      return matchesSearch && matchesFilter;
+    });
+  }, [projects, searchTerm, filterStatus]);
 
-  const handleEdit = (id: string) => {
+  const handleEdit = useCallback((id: string) => {
     setEditingProject(id);
     setIsModalOpen(true);
-  };
+  }, []);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     setIsModalOpen(false);
     setEditingProject(null);
-  };
+  }, []);
 
   return (
     <div className="space-y-4 sm:space-y-6">
