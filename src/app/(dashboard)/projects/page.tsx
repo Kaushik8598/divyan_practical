@@ -46,6 +46,7 @@ export default function ProjectsPage() {
         </h1>
         <button
           onClick={() => setIsModalOpen(true)}
+          aria-label="New Project"
           className="w-full sm:w-auto flex justify-center items-center space-x-2 bg-cyan-600 dark:bg-primary text-white dark:text-background px-4 py-2.5 sm:py-2 rounded-lg font-medium hover:bg-cyan-700 dark:hover:bg-primary-dark transition-colors shadow-sm dark:shadow-neon shrink-0"
         >
           <Plus className="w-5 h-5 sm:w-4 sm:h-4" />
@@ -68,6 +69,7 @@ export default function ProjectsPage() {
         <select
           value={filterStatus}
           onChange={(e) => setFilterStatus(e.target.value)}
+          aria-label="Status"
           className="w-full md:w-48 px-4 py-2.5 sm:py-2 bg-gray-50 dark:bg-background border border-gray-200 dark:border-borderDark rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-primary dark:text-textMain"
         >
           <option value="All">All Statuses</option>
@@ -86,9 +88,9 @@ export default function ProjectsPage() {
           >
             <div>
               <div className="flex justify-between items-start mb-4 gap-2">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-textMain leading-tight break-words">
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-textMain leading-tight break-words">
                   {project.name}
-                </h3>
+                </h2>
                 <span
                   className={`px-2.5 py-1 rounded-full text-xs font-medium border shrink-0
                   ${

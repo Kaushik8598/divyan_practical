@@ -66,6 +66,7 @@ export default function ProjectModal({
           </h2>
           <button
             onClick={onClose}
+            aria-label="Close"
             className="text-gray-400 hover:text-gray-600 dark:hover:text-textMain transition-colors"
           >
             <X className="w-5 h-5" />
@@ -100,6 +101,7 @@ export default function ProjectModal({
                   status: e.target.value as Project["status"],
                 })
               }
+              aria-label="Status"
               className="w-full px-4 py-2 bg-gray-50 dark:bg-background border border-gray-200 dark:border-borderDark rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-primary dark:text-textMain"
             >
               <option value="Active">Active</option>
@@ -128,12 +130,14 @@ export default function ProjectModal({
             <button
               type="button"
               onClick={onClose}
+              aria-label="Cancel"
               className="flex-1 px-4 py-2 bg-gray-100 dark:bg-borderDark text-gray-700 dark:text-textMain rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
+              aria-label={projectId ? "Save Changes" : "Create Project"}
               className="flex-1 px-4 py-2 bg-cyan-600 dark:bg-primary text-white dark:text-background rounded-lg font-medium hover:bg-cyan-700 dark:hover:bg-primary-dark transition-colors dark:shadow-neon"
             >
               {projectId ? "Save Changes" : "Create Project"}

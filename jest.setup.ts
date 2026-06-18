@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
+import { jest } from "@jest/globals";
 
-// Mock matchMedia for Recharts and other responsive components
 Object.defineProperty(window, "matchMedia", {
   writable: true,
   value: jest.fn().mockImplementation((query) => ({

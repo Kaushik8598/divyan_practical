@@ -20,9 +20,9 @@ const StatCard = React.memo(
             <p className="text-sm font-medium text-gray-500 dark:text-textMuted mb-1 truncate">
               {title}
             </p>
-            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-textMain truncate">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-textMain truncate">
               {value}
-            </h3>
+            </h2>
           </div>
           <div
             className={`p-3 rounded-lg bg-gray-50 dark:bg-background ${color} shrink-0`}

@@ -175,6 +175,7 @@ export default function UsersPage() {
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
+              aria-label="Prev"
               className="p-2 rounded-lg border border-gray-200 dark:border-borderDark text-gray-600 dark:text-textMuted hover:bg-gray-50 dark:hover:bg-borderDark disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -182,6 +183,7 @@ export default function UsersPage() {
             <button
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page === totalPages || totalPages === 0}
+              aria-label="Next"
               className="p-2 rounded-lg border border-gray-200 dark:border-borderDark text-gray-600 dark:text-textMuted hover:bg-gray-50 dark:hover:bg-borderDark disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <ChevronRight className="w-5 h-5" />

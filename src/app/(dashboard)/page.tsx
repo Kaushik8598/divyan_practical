@@ -53,28 +53,6 @@ export default function DashboardHome() {
       </div>
 
       <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4 sm:gap-6">
-        {/* {statCards.map((stat, index) => (
-          <div
-            key={index}
-            className="p-4 sm:p-6 bg-white dark:bg-surface rounded-xl border border-gray-200 dark:border-borderDark shadow-sm dark:shadow-neon transition-shadow flex flex-col justify-center"
-          >
-            <div className="flex items-center justify-between">
-              <div className="overflow-hidden pr-2">
-                <p className="text-sm font-medium text-gray-500 dark:text-textMuted mb-1 truncate">
-                  {stat.title}
-                </p>
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-textMain truncate">
-                  {stat.value}
-                </h3>
-              </div>
-              <div
-                className={`p-3 rounded-lg bg-gray-50 dark:bg-background ${stat.color} shrink-0`}
-              >
-                <stat.icon className="w-6 h-6" />
-              </div>
-            </div>
-          </div>
-        ))} */}
         {statCards.map((stat, index) => (
           <div key={index}>
             <StatCard

@@ -60,6 +60,7 @@ export default function Sidebar() {
           {/* Mobile Close Button */}
           <button
             onClick={() => dispatch(toggleSidebar())}
+            aria-label="Close Sidebar"
             className="lg:hidden text-gray-400 hover:text-gray-600 dark:hover:text-textMain transition-colors"
           >
             <X className="w-5 h-5" />

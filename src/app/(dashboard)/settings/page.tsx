@@ -46,20 +46,28 @@ export default function SettingsPage() {
           <div className="p-6 space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-textMuted mb-1">
+                <label
+                  htmlFor="displayName"
+                  className="block text-sm font-medium text-gray-700 dark:text-textMuted mb-1"
+                >
                   Display Name
                 </label>
                 <input
+                  id="displayName" // Added id
                   type="text"
                   defaultValue={user?.name || "Admin User"}
                   className="w-full px-4 py-2 bg-gray-50 dark:bg-background border border-gray-200 dark:border-borderDark rounded-lg focus:ring-2 focus:ring-cyan-500 dark:focus:ring-primary outline-none dark:text-textMain transition-all"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-textMuted mb-1">
+                <label
+                  htmlFor="emailAddress"
+                  className="block text-sm font-medium text-gray-700 dark:text-textMuted mb-1"
+                >
                   Email Address
                 </label>
                 <input
+                  id="emailAddress" // Added id
                   type="email"
                   disabled
                   defaultValue={user?.email || "admin@divyan.ai"}
@@ -91,6 +99,7 @@ export default function SettingsPage() {
               <button
                 type="button"
                 onClick={() => dispatch(toggleTheme())}
+                aria-label="Toggle Dark Mode"
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 ${
                   theme === "dark"
                     ? "bg-cyan-500 dark:bg-primary shadow-neon"
@@ -128,6 +137,7 @@ export default function SettingsPage() {
                   onClick={() =>
                     setNotifications({ ...notifications, [key]: !value })
                   }
+                  aria-label={`Toggle ${key} notifications`}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 ${
                     value
                       ? "bg-cyan-500 dark:bg-primary shadow-neon"

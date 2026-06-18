@@ -130,9 +130,9 @@ export default function AnalyticsPage() {
               <p className="text-sm text-gray-500 dark:text-textMuted mb-1">
                 {kpi.title}
               </p>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-textMain">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-textMain">
                 {kpi.value}
-              </h3>
+              </h2>
             </div>
             <div
               className={`p-3 rounded-lg bg-gray-50 dark:bg-background ${kpi.color}`}
