@@ -28,4 +28,14 @@ describe("Auth Redux Slice", () => {
     expect(actual.isAuthenticated).toEqual(false);
     expect(actual.user).toBeNull();
   });
+
+  it("should handle login without rememberMe (uses session storage)", () => {
+    const initialState = { isAuthenticated: false, user: null };
+    const actual = authReducer(
+      initialState,
+      login({ email: "temp@divyan.ai", rememberMe: false }),
+    );
+    expect(actual.isAuthenticated).toEqual(true);
+    expect(actual.user?.email).toEqual("temp@divyan.ai");
+  });
 });

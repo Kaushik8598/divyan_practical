@@ -11,43 +11,63 @@ jest.mock("next/navigation", () => ({
   },
 }));
 
-const renderWithRedux = (component: React.ReactElement) => {
-  const store = configureStore({ reducer: { auth: authReducer } });
-  return render(<Provider store={store}>{component}</Provider>);
-};
-
 describe("Login Page Form Validation", () => {
-  it("shows an error if email is invalid", () => {
-    renderWithRedux(<LoginPage />);
+  it("shows an error if email is invalid", async () => {
+    const store = configureStore({ reducer: { auth: authReducer } });
+    render(
+      <Provider store={store}>
+        <LoginPage />
+      </Provider>,
+    );
 
-    const emailInput = screen.getByPlaceholderText("admin@divyan.ai");
-    const submitButton = screen.getByText("Authenticate Session");
+    const emailInput = screen.getByLabelText(/Email/i);
+    const form = emailInput.closest("form")!; // Grab the form directly
 
-    // Type an invalid email (no @ symbol)
     fireEvent.change(emailInput, { target: { value: "invalidemail.com" } });
-    fireEvent.click(submitButton);
+    fireEvent.submit(form); // Force submit
 
-    // Assert the validation error appears
     expect(
-      screen.getByText("Please enter a valid email address."),
+      await screen.findByText(/Please enter a valid email address/i),
     ).toBeInTheDocument();
   });
 
-  it("shows an error if password is too short", () => {
-    renderWithRedux(<LoginPage />);
+  it("shows an error if password is too short", async () => {
+    const store = configureStore({ reducer: { auth: authReducer } });
+    render(
+      <Provider store={store}>
+        <LoginPage />
+      </Provider>,
+    );
 
-    const emailInput = screen.getByPlaceholderText("admin@divyan.ai");
-    const passwordInput = screen.getByPlaceholderText("••••••••");
-    const submitButton = screen.getByText("Authenticate Session");
+    const emailInput = screen.getByLabelText(/Email/i);
+    const passwordInput = screen.getByLabelText(/Password/i);
+    const form = emailInput.closest("form")!;
 
-    // Valid email, invalid password
     fireEvent.change(emailInput, { target: { value: "test@divyan.ai" } });
-    fireEvent.change(passwordInput, { target: { value: "123" } }); // Less than 6 chars
-    fireEvent.click(submitButton);
+    fireEvent.change(passwordInput, { target: { value: "123" } });
+    fireEvent.submit(form);
 
-    // Assert the validation error appears
     expect(
-      screen.getByText("Password must be at least 6 characters."),
+      await screen.findByText(/Password must be at least 6 characters/i),
     ).toBeInTheDocument();
+  });
+
+  it("dispatches login and redirects on successful validation", () => {
+    const store = configureStore({ reducer: { auth: authReducer } });
+    render(
+      <Provider store={store}>
+        <LoginPage />
+      </Provider>,
+    );
+
+    const emailInput = screen.getByLabelText(/Email/i);
+    const passwordInput = screen.getByLabelText(/Password/i);
+    const form = emailInput.closest("form")!;
+
+    fireEvent.change(emailInput, { target: { value: "admin@divyan.ai" } });
+    fireEvent.change(passwordInput, { target: { value: "password123" } });
+    fireEvent.submit(form);
+
+    expect(store.getState().auth.isAuthenticated).toBe(true);
   });
 });

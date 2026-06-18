@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import ThemeWrapper from "@/components/ThemeWrapper";
-import uiReducer from "@/features/ui/uiSlice";
+import uiReducer from "@/features/theme/uiSlice";
 
 // Helper to create a mock store
 const createMockStore = (preloadedState: any) => {
