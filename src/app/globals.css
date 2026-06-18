@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -23,4 +23,41 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+} */
+
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-background: #0a0a0f;
+  --color-surface: #11111a;
+
+  --color-primary: #00f3ff;
+  --color-primary-dark: #00b8c2;
+
+  --color-textMain: #e2e8f0;
+  --color-textMuted: #94a3b8;
+  --color-borderDark: #1f2937;
+
+  --shadow-neon: 0 0 10px rgba(0, 243, 255, 0.3);
+}
+
+@layer base {
+  body {
+    background-color: #f9fafb;
+    color: #111827;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+  }
+
+  .dark body {
+    background-color: var(--color-background);
+    color: var(--color-textMain);
+  }
+}
+
+@theme {
+  --animate-spin-reverse: spin 1s linear infinite reverse;
 }
