@@ -1,5 +1,6 @@
 "use client";
 
+import React, { Suspense } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAnalyticsData } from "@/services/api";
 import { Activity, Users, FileText, TrendingUp } from "lucide-react";
@@ -150,33 +151,41 @@ export default function AnalyticsPage() {
             User Content Generation
           </h3>
           <div className="h-[300px] w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={postsPerUser}>
-                <CartesianGrid
-                  strokeDasharray="3 3"
-                  stroke="#374151"
-                  vertical={false}
-                />
-                <XAxis
-                  dataKey="name"
-                  stroke="#9ca3af"
-                  fontSize={12}
-                  tickLine={false}
-                  axisLine={false}
-                />
-                <YAxis
-                  stroke="#9ca3af"
-                  fontSize={12}
-                  tickLine={false}
-                  axisLine={false}
-                />
-                <Tooltip
-                  contentStyle={tooltipStyle}
-                  itemStyle={{ color: "#00f3ff" }}
-                />
-                <Bar dataKey="posts" fill="#00f3ff" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+            <Suspense
+              fallback={
+                <div className="h-full w-full flex items-center justify-center text-cyan-500 animate-pulse">
+                  Streaming chart data...
+                </div>
+              }
+            >
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={postsPerUser}>
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    stroke="#374151"
+                    vertical={false}
+                  />
+                  <XAxis
+                    dataKey="name"
+                    stroke="#9ca3af"
+                    fontSize={12}
+                    tickLine={false}
+                    axisLine={false}
+                  />
+                  <YAxis
+                    stroke="#9ca3af"
+                    fontSize={12}
+                    tickLine={false}
+                    axisLine={false}
+                  />
+                  <Tooltip
+                    contentStyle={tooltipStyle}
+                    itemStyle={{ color: "#00f3ff" }}
+                  />
+                  <Bar dataKey="posts" fill="#00f3ff" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </Suspense>
           </div>
         </div>
 
@@ -186,59 +195,73 @@ export default function AnalyticsPage() {
             Traffic vs Conversion
           </h3>
           <div className="h-[300px] w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={mockTimeData}>
-                <defs>
-                  <linearGradient id="colorTraffic" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
-                  </linearGradient>
-                  <linearGradient
-                    id="colorConversion"
-                    x1="0"
-                    y1="0"
-                    x2="0"
-                    y2="1"
-                  >
-                    <stop offset="5%" stopColor="#00f3ff" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#00f3ff" stopOpacity={0} />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid
-                  strokeDasharray="3 3"
-                  stroke="#374151"
-                  vertical={false}
-                />
-                <XAxis
-                  dataKey="name"
-                  stroke="#9ca3af"
-                  fontSize={12}
-                  tickLine={false}
-                  axisLine={false}
-                />
-                <YAxis
-                  stroke="#9ca3af"
-                  fontSize={12}
-                  tickLine={false}
-                  axisLine={false}
-                />
-                <Tooltip contentStyle={tooltipStyle} />
-                <Area
-                  type="monotone"
-                  dataKey="traffic"
-                  stroke="#3b82f6"
-                  fillOpacity={1}
-                  fill="url(#colorTraffic)"
-                />
-                <Area
-                  type="monotone"
-                  dataKey="conversion"
-                  stroke="#00f3ff"
-                  fillOpacity={1}
-                  fill="url(#colorConversion)"
-                />
-              </AreaChart>
-            </ResponsiveContainer>
+            <Suspense
+              fallback={
+                <div className="h-full w-full flex items-center justify-center text-cyan-500 animate-pulse">
+                  Streaming chart data...
+                </div>
+              }
+            >
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={mockTimeData}>
+                  <defs>
+                    <linearGradient
+                      id="colorTraffic"
+                      x1="0"
+                      y1="0"
+                      x2="0"
+                      y2="1"
+                    >
+                      <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
+                      <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+                    </linearGradient>
+                    <linearGradient
+                      id="colorConversion"
+                      x1="0"
+                      y1="0"
+                      x2="0"
+                      y2="1"
+                    >
+                      <stop offset="5%" stopColor="#00f3ff" stopOpacity={0.3} />
+                      <stop offset="95%" stopColor="#00f3ff" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    stroke="#374151"
+                    vertical={false}
+                  />
+                  <XAxis
+                    dataKey="name"
+                    stroke="#9ca3af"
+                    fontSize={12}
+                    tickLine={false}
+                    axisLine={false}
+                  />
+                  <YAxis
+                    stroke="#9ca3af"
+                    fontSize={12}
+                    tickLine={false}
+                    axisLine={false}
+                  />
+                  <Tooltip contentStyle={tooltipStyle} />
+                  <Area
+                    type="monotone"
+                    dataKey="traffic"
+                    stroke="#3b82f6"
+                    fillOpacity={1}
+                    fill="url(#colorTraffic)"
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="conversion"
+                    stroke="#00f3ff"
+                    fillOpacity={1}
+                    fill="url(#colorConversion)"
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </Suspense>
           </div>
         </div>
       </div>

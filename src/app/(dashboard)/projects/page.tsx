@@ -116,12 +116,14 @@ export default function ProjectsPage() {
             <div className="mt-4 sm:mt-6 flex justify-end space-x-2 sm:opacity-0 group-hover:opacity-100 transition-opacity">
               <button
                 onClick={() => handleEdit(project.id)}
+                aria-label={`Edit project ${project.name}`}
                 className="p-2 bg-gray-50 sm:bg-transparent dark:bg-borderDark/30 sm:dark:bg-transparent rounded-lg sm:rounded-none text-gray-600 sm:text-gray-400 hover:text-cyan-500 dark:text-textMuted dark:hover:text-primary transition-colors"
               >
                 <Edit className="w-4 h-4" />
               </button>
               <button
                 onClick={() => dispatch(deleteProject(project.id))}
+                aria-label={`Delete project ${project.name}`}
                 className="p-2 bg-gray-50 sm:bg-transparent dark:bg-borderDark/30 sm:dark:bg-transparent rounded-lg sm:rounded-none text-gray-600 sm:text-gray-400 hover:text-red-500 dark:text-textMuted dark:hover:text-red-500 transition-colors"
               >
                 <Trash2 className="w-4 h-4" />

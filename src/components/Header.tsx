@@ -16,6 +16,7 @@ export default function Header() {
       <div className="flex items-center">
         <button
           onClick={() => dispatch(toggleSidebar())}
+          aria-label="Toggle Sidebar"
           className="lg:hidden p-2 mr-2 -ml-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-borderDark transition-colors"
         >
           <Menu className="w-5 h-5 dark:text-textMain" />
@@ -25,6 +26,7 @@ export default function Header() {
       <div className="flex items-center space-x-2 sm:space-x-4">
         <button
           onClick={() => dispatch(toggleTheme())}
+          aria-label="Toggle Theme"
           className="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-borderDark transition-colors"
         >
           {theme === "dark" ? (
@@ -43,6 +45,7 @@ export default function Header() {
           </span>
           <button
             onClick={() => dispatch(logout())}
+            aria-label="Logout"
             className="p-2 text-gray-500 hover:text-red-500 transition-colors sm:ml-2 shrink-0"
             title="Logout"
           >

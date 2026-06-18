@@ -3,6 +3,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { FolderKanban, Activity, DollarSign, Users } from "lucide-react";
+import StatCard from "@/components/StatCard";
 
 export default function DashboardHome() {
   const projects = useSelector((state: RootState) => state.projects.items);
@@ -52,7 +53,7 @@ export default function DashboardHome() {
       </div>
 
       <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4 sm:gap-6">
-        {statCards.map((stat, index) => (
+        {/* {statCards.map((stat, index) => (
           <div
             key={index}
             className="p-4 sm:p-6 bg-white dark:bg-surface rounded-xl border border-gray-200 dark:border-borderDark shadow-sm dark:shadow-neon transition-shadow flex flex-col justify-center"
@@ -72,6 +73,16 @@ export default function DashboardHome() {
                 <stat.icon className="w-6 h-6" />
               </div>
             </div>
+          </div>
+        ))} */}
+        {statCards.map((stat, index) => (
+          <div key={index}>
+            <StatCard
+              title={stat.title}
+              value={stat.value}
+              icon={stat.icon}
+              color={stat.color}
+            />
           </div>
         ))}
       </div>

@@ -5,6 +5,7 @@ import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { fetchUsersData } from "@/services/api";
 import { Search, ChevronLeft, ChevronRight, ArrowUpDown } from "lucide-react";
 import { useDebounce } from "@/hooks/useDebounce";
+import Image from "next/image";
 
 export default function UsersPage() {
   const [page, setPage] = useState(1);
@@ -125,10 +126,18 @@ export default function UsersPage() {
                     className="hover:bg-gray-50 dark:hover:bg-borderDark/20 transition-colors text-sm text-gray-900 dark:text-textMain"
                   >
                     <td className="px-6 py-4 whitespace-nowrap font-medium flex items-center space-x-3">
-                      <img
+                      {/* <img
                         src={user.image}
                         alt={user.firstName}
                         className="w-8 h-8 rounded-full bg-gray-200 dark:bg-borderDark"
+                      /> */}
+                      <Image
+                        src={user.image}
+                        alt={`${user.firstName}'s avatar`}
+                        width={32}
+                        height={32}
+                        className="rounded-full bg-gray-200 dark:bg-borderDark"
+                        unoptimized
                       />
                       <span>
                         {user.firstName} {user.lastName}
